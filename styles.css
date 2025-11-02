@@ -361,6 +361,24 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
+/* Navigation brand text - gradient in light theme */
+.nav-brand {
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="dark"] .nav-brand {
+    background: #ffffff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 [data-theme="dark"] nav a {
     color: var(--text-dark) !important;
 }
