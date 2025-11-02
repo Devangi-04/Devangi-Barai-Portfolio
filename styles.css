@@ -1,0 +1,837 @@
+:root {
+    --bg-light: #f0f4ff;
+    --bg-white: #ffffff;
+    --text-dark: #1a202c;
+    --text-gray: #4a5568;
+    --primary: #4f46e5;
+    --secondary: #9333ea;
+    --accent: #06b6d4;
+    --card-bg: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.95);
+    --gradient-from: #6366f1;
+    --gradient-to: #a855f7;
+    --success: #22c55e;
+    --hover-bg: #e0e7ff;
+    --border-light: #e0e7ff;
+    --shadow-sm: 0 2px 8px rgba(99, 102, 241, 0.08);
+    --shadow-md: 0 4px 16px rgba(99, 102, 241, 0.12);
+    --shadow-lg: 0 8px 32px rgba(99, 102, 241, 0.16);
+    --shadow-xl: 0 16px 48px rgba(99, 102, 241, 0.20);
+}
+
+[data-theme="dark"] {
+    --bg-light: #0a0e1a;
+    --bg-white: #1a1f35;
+    --text-dark: #ffffff;
+    --text-gray: #cbd5e1;
+    --primary: #60a5fa;
+    --secondary: #a78bfa;
+    --accent: #22d3ee;
+    --card-bg: #1e2642;
+    --nav-bg: rgba(26, 31, 53, 0.98);
+    --gradient-from: #4f46e5;
+    --gradient-to: #7c3aed;
+    --success: #34d399;
+    --hover-bg: #2d3548;
+    --border-color: #334155;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+}
+
+/* Enhanced Hero Background */
+.hero-gradient {
+    background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #fce7f3 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+    animation: pulse 15s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+[data-theme="dark"] .hero-gradient {
+    background: linear-gradient(135deg, #1e3a8a 0%, #5b21b6 50%, #581c87 100%);
+}
+
+[data-theme="dark"] .hero-gradient::before {
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 40%);
+}
+
+/* Hero content above background */
+#home > div {
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced text shadow for better readability on gradient */
+#home h1,
+#home p,
+#home a {
+    color: var(--text-dark);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme - keep white text on gradient */
+[data-theme="dark"] #home h1,
+[data-theme="dark"] #home p,
+[data-theme="dark"] #home a {
+    color: #ffffff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Dark theme - button styling */
+[data-theme="dark"] #home a[href="#contact"] {
+    border-color: #ffffff;
+}
+
+[data-theme="dark"] #home a[href="#contact"]:hover {
+    background-color: #ffffff;
+    color: var(--primary);
+}
+
+#home .w-48 {
+    position: relative;
+    z-index: 2;
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 3px solid var(--text-dark);
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: currentColor }
+}
+
+/* Dark theme - typewriter caret */
+[data-theme="dark"] .typewriter {
+    border-right-color: #ffffff;
+}
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .hover-lift:hover {
+    box-shadow: 0 12px 24px rgba(96, 165, 250, 0.25);
+}
+
+.skill-badge {
+    transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.chatbot-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.chatbot-button:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-window {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chatbot-window.active {
+    display: flex;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    max-width: 80%;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message.bot {
+    background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+    color: white;
+    align-self: flex-start;
+}
+
+.message.user {
+    background: #f0f0f0;
+    color: #333;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.chat-input-container {
+    border-top: 1px solid #e5e7eb;
+    padding: 16px;
+    background: white;
+}
+
+.chat-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.chat-input:focus {
+    border-color: var(--primary);
+}
+
+.send-button {
+    margin-top: 8px;
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+}
+
+.send-button:hover {
+    transform: scale(1.02);
+}
+
+.chat-header {
+    background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+    color: white;
+    padding: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-chat {
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+}
+
+/* Dark Mode Toggle */
+.theme-toggle {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* GitHub Link Button */
+.github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 12px;
+}
+
+.github-link:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.github-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Enhanced Dark Mode Styles */
+[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+[data-theme="dark"] .bg-white {
+    background-color: var(--card-bg) !important;
+}
+
+[data-theme="dark"] .bg-gray-50 {
+    background-color: var(--bg-light) !important;
+}
+
+[data-theme="dark"] nav {
+    background-color: var(--nav-bg) !important;
+    color: var(--text-dark) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] nav a {
+    color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] nav a:hover {
+    color: var(--primary) !important;
+}
+
+[data-theme="dark"] .text-gray-800 {
+    color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+    color: var(--text-gray) !important;
+}
+
+[data-theme="dark"] #mobile-menu {
+    background-color: var(--card-bg) !important;
+    border-top: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] #mobile-menu a:hover {
+    background-color: var(--hover-bg) !important;
+}
+
+/* Dark mode card enhancements */
+[data-theme="dark"] .hover-lift {
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .hover-lift:hover {
+    box-shadow: 0 12px 24px rgba(96, 165, 250, 0.2);
+    border-color: var(--primary);
+}
+
+/* Dark mode chatbot */
+[data-theme="dark"] .chatbot-window {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .chat-messages {
+    background: var(--card-bg);
+}
+
+[data-theme="dark"] .message.user {
+    background: var(--hover-bg);
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] .chat-input-container {
+    background: var(--card-bg) !important;
+    border-top: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .chat-input {
+    background: var(--bg-light);
+    color: var(--text-dark);
+    border-color: var(--border-color);
+}
+
+/* Dark mode form elements */
+[data-theme="dark"] input,
+[data-theme="dark"] textarea {
+    background-color: var(--bg-light) !important;
+    color: var(--text-dark) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus {
+    border-color: var(--primary) !important;
+    outline: 2px solid rgba(96, 165, 250, 0.3);
+}
+
+/* Dark mode footer */
+[data-theme="dark"] footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    border-top: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] footer p {
+    color: #f1f5f9 !important;
+}
+
+/* Dark mode skill badges */
+[data-theme="dark"] .skill-badge {
+    background-color: var(--hover-bg);
+    color: var(--text-dark);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .skill-badge:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.3);
+}
+
+/* Dark mode technology tags */
+[data-theme="dark"] .bg-primary\/20 {
+    background-color: rgba(96, 165, 250, 0.15) !important;
+}
+
+/* Improved gradients for dark mode */
+[data-theme="dark"] .gradient-bg {
+    background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+    box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+}
+
+/* Dark mode headings and gradient text */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4 {
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] .bg-clip-text {
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+/* Dark mode section backgrounds */
+[data-theme="dark"] section {
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Enhanced visibility for important elements */
+[data-theme="dark"] .rounded-full {
+    border: 1px solid var(--border-color);
+}
+
+/* Dark mode contact form */
+[data-theme="dark"] #contact-form button {
+    background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+}
+
+/* Technology badges in dark mode - better visibility */
+[data-theme="dark"] .text-primary {
+    color: var(--primary) !important;
+}
+
+/* Experience and Education cards */
+[data-theme="dark"] .bg-gradient-to-r {
+    background: linear-gradient(to right, rgba(79, 70, 229, 0.15), rgba(124, 58, 237, 0.15)) !important;
+}
+
+/* Link colors in dark mode */
+[data-theme="dark"] a:not(.github-link):not(.send-button):not(.chatbot-button) {
+    color: var(--primary);
+}
+
+[data-theme="dark"] a:not(.github-link):not(.send-button):not(.chatbot-button):hover {
+    color: var(--secondary);
+}
+
+/* Better contrast for white text */
+[data-theme="dark"] .text-white {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Profile image border in dark mode */
+[data-theme="dark"] .border-white {
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .border-4 {
+    border-width: 2px;
+}
+
+/* Dark mode - Skills Section */
+[data-theme="dark"] .text-gray-700 {
+    color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] .bg-gradient-to-r {
+    background: linear-gradient(to right, rgba(96, 165, 250, 0.2), rgba(167, 139, 250, 0.2)) !important;
+}
+
+/* Dark mode - Contact Section */
+[data-theme="dark"] .text-gray-500 {
+    color: var(--text-gray) !important;
+}
+
+[data-theme="dark"] label {
+    color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] a[href^="mailto"],
+[data-theme="dark"] a[href^="tel"],
+[data-theme="dark"] a[target="_blank"] {
+    color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] a[href^="mailto"]:hover,
+[data-theme="dark"] a[href^="tel"]:hover,
+[data-theme="dark"] a[target="_blank"]:hover {
+    color: var(--primary) !important;
+}
+
+/* Dark mode - Better skill badge visibility */
+[data-theme="dark"] .skill-badge {
+    background: linear-gradient(to right, rgba(96, 165, 250, 0.2), rgba(167, 139, 250, 0.2)) !important;
+    color: var(--text-dark) !important;
+}
+
+/* Dark mode - Section headings in skills */
+[data-theme="dark"] #skills h3 {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+/* Dark mode - Contact information text */
+[data-theme="dark"] #contact h3 {
+    color: var(--text-dark) !important;
+}
+
+[data-theme="dark"] #contact p {
+    color: var(--text-gray) !important;
+}
+
+/* ============================================ */
+/* LIGHT THEME ENHANCEMENTS */
+/* ============================================ */
+
+/* Enhanced cards in light mode */
+.hover-lift {
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary);
+}
+
+/* Navigation enhancement */
+nav {
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(12px);
+}
+
+/* Skill badges enhancement */
+.skill-badge {
+    box-shadow: var(--shadow-sm);
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* Contact section cards */
+#contact .flex.items-center {
+    transition: transform 0.3s ease;
+}
+
+#contact .flex.items-center:hover {
+    transform: translateX(8px);
+}
+
+/* Form inputs enhancement */
+input,
+textarea {
+    border: 2px solid var(--border-light);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Button enhancements */
+button,
+.github-link,
+a.px-8 {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover,
+.github-link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Section backgrounds */
+section {
+    position: relative;
+}
+
+section:nth-child(even) {
+    background: var(--bg-white);
+}
+
+section:nth-child(odd) {
+    background: var(--bg-light);
+}
+
+/* Gradient text enhancement */
+.bg-clip-text {
+    background: linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Project cards enhancement */
+#projects-grid > div {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#projects-grid > div:hover {
+    transform: translateY(-12px) scale(1.02);
+}
+
+/* Technology tags */
+.bg-primary\/20 {
+    background-color: rgba(37, 99, 235, 0.12);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    transition: all 0.2s ease;
+}
+
+.bg-primary\/20:hover {
+    background-color: rgba(37, 99, 235, 0.2);
+    transform: scale(1.05);
+}
+
+/* GitHub button enhancement */
+.github-link {
+    box-shadow: var(--shadow-sm);
+}
+
+.github-link:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Education and Experience cards */
+.bg-gradient-to-r {
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+}
+
+.bg-gradient-to-r:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+/* Chatbot enhancement */
+.chatbot-button {
+    box-shadow: var(--shadow-lg);
+}
+
+.chatbot-button:hover {
+    box-shadow: var(--shadow-xl);
+}
+
+.chatbot-window {
+    box-shadow: var(--shadow-xl);
+    border: 1px solid var(--border-light);
+}
+
+/* Footer */
+footer {
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+}
+
+footer p {
+    color: #f1f5f9 !important;
+    font-weight: 500;
+}
+
+/* Mobile menu */
+#mobile-menu {
+    box-shadow: var(--shadow-md);
+    border-top: 2px solid var(--border-light);
+}
+
+#mobile-menu a:hover {
+    background-color: var(--hover-bg);
+    color: var(--primary);
+}
+
+/* Profile image enhancement */
+.rounded-full.bg-white {
+    box-shadow: var(--shadow-xl);
+    border: 4px solid white;
+}
+
+/* Better text contrast */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+p {
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+/* Link styling */
+a {
+    transition: all 0.2s ease;
+}
+
+/* Contact form button */
+#contact-form button {
+    box-shadow: var(--shadow-md);
+}
+
+#contact-form button:hover {
+    box-shadow: var(--shadow-xl);
+}
+
+/* Smooth scrolling enhancement */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+    background-color: var(--primary);
+    color: white;
+}
+
+::-moz-selection {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Logo styling */
+nav img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+    object-position: center 10%;
+    opacity: 0.95;
+}
+
+nav img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    opacity: 1;
+}
+
+[data-theme="dark"] nav img {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    opacity: 0.95;
+}
+
+[data-theme="dark"] nav img:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    opacity: 1;
+}
+
+/* Profile photo enhancement */
+#home img {
+    transition: transform 0.4s ease;
+    object-fit: cover;
+    object-position: center 12%;
+}
+
+#home .w-56:hover img {
+    transform: scale(1.05);
+}
+

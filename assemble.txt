@@ -1,0 +1,21 @@
+ASSEMBLY INSTRUCTIONS FOR COMPLETE INDEX.HTML
+=============================================
+
+The complete portfolio website consists of these parts:
+
+1. part1.html (lines 1-78) - Header, Navigation, Hero Section
+2. middle-sections.html - Education, Experience, Skills, Projects, Interests
+3. contact-section.html - Contact Form, Footer, Chatbot, Scripts
+
+To create the complete index.html:
+- Copy content from part1.html (WITHOUT the closing </body> and </html> tags)
+- Append content from middle-sections.html
+- Append content from contact-section.html (includes closing tags)
+
+All files are ready to use!
+The website uses:
+- styles.css for custom styling
+- script.js for JavaScript functionality
+- Tailwind CSS via CDN
+
+Simply open the assembled index.html in a browser to view the portfolio.
