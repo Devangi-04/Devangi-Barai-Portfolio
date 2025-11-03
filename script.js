@@ -1,3 +1,24 @@
+// Resume Modal Functions
+function openResumeModal() {
+    const modal = document.getElementById('resume-modal');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeResumeModal() {
+    const modal = document.getElementById('resume-modal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+    const modal = document.getElementById('resume-modal');
+    if (e.target === modal) {
+        closeResumeModal();
+    }
+});
+
 // Typewriter Effect
 const text = "Passionate Full-Stack Developer and Student";
 let index = 0;

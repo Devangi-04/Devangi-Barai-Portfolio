@@ -82,7 +82,7 @@
                 <p id="typewriter" class="text-xl md:text-2xl font-light"></p>
             </div>
             <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="Devangi_Barai_Resume.pdf" target="_blank" class="px-8 py-3 bg-white text-primary font-semibold rounded-full hover:shadow-xl transition transform hover:scale-105">View Resume</a>
+                <button onclick="openResumeModal()" class="px-8 py-3 bg-white text-primary font-semibold rounded-full hover:shadow-xl transition transform hover:scale-105">View Resume</button>
                 <a href="#contact" class="px-8 py-3 bg-transparent border-2 border-primary font-semibold rounded-full hover:bg-primary hover:text-white transition transform hover:scale-105">Contact Me</a>
             </div>
         </div>
@@ -469,6 +469,26 @@
         <div class="chat-input-container">
             <input type="text" id="chat-input" class="chat-input" placeholder="Ask me anything...">
             <button id="send-button" class="send-button">Send</button>
+        </div>
+    </div>
+</div>
+
+<!-- Resume Modal -->
+<div id="resume-modal" class="resume-modal">
+    <div class="resume-modal-content">
+        <button class="resume-close-btn" onclick="closeResumeModal()">&times;</button>
+        <h2 class="text-2xl font-bold mb-3 text-gray-800">Resume</h2>
+        <div class="resume-preview">
+            <iframe id="resume-iframe" src="Devangi_Barai_Resume.pdf#toolbar=1&navpanes=0&scrollbar=1" class="w-full h-full border-0" frameborder="0"></iframe>
+        </div>
+        <div class="resume-actions">
+            <a href="Devangi_Barai_Resume.pdf" download="Devangi_Barai_Resume.pdf" class="resume-download-btn">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Download Resume
+            </a>
+            <button onclick="closeResumeModal()" class="resume-cancel-btn">Close</button>
         </div>
     </div>
 </div>
