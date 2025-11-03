@@ -81,33 +81,147 @@ const chatMessages = document.getElementById('chat-messages');
 const chatInput = document.getElementById('chat-input');
 const sendButton = document.getElementById('send-button');
 
-// Chatbot responses
+// Chatbot responses with comprehensive keywords
 const botResponses = {
-    'hello': 'Hi! I\'m Devangi\'s assistant. How can I help you today?',
-    'hi': 'Hello! How can I assist you?',
-    'skills': 'Devangi is proficient in Java, JavaScript, React.js, Node.js, Next.js, Tailwind CSS, Express.js, MySQL, Supabase, and more!',
-    'experience': 'Devangi has worked as a Full Stack Developer Intern at 10xGrowth (2 months) and Prodigy (1 month).',
-    'education': 'Devangi is currently pursuing TY BSc Computer Science at Pillai College of Arts, Commerce and Science (PCACS), expected graduation in 2026.',
-    'projects': 'Some notable projects include MSA Smart Attendance WebApp, Chatting App, and TalentExcel platform.',
-    'contact': 'You can reach Devangi at devangibarai0403@gmail.com or call 9967313355.',
-    'email': 'Devangi\'s email is devangibarai0403@gmail.com',
-    'phone': 'You can call Devangi at 9967313355',
-    'github': 'Check out Devangi\'s GitHub: VersatileMentor04',
-    'linkedin': 'Connect on LinkedIn: linkedin.com/in/devangi-barai-295692295',
-    'default': 'I can help you with information about Devangi\'s skills, experience, education, projects, or contact details. What would you like to know?'
+    // Greetings
+    'hello': 'Hi! I\'m Devangi\'s assistant. How can I help you today? You can ask me about skills, experience, education, projects, interests, strengths, or contact information.',
+    'hi': 'Hello! How can I assist you? Feel free to ask about Devangi\'s skills, experience, education, projects, interests, strengths, or how to get in touch!',
+    'hey': 'Hey there! I\'m here to help you learn more about Devangi. What would you like to know?',
+    'greetings': 'Greetings! I\'m here to answer any questions about Devangi. What would you like to explore?',
+    'good morning': 'Good morning! How can I help you learn more about Devangi today?',
+    'good afternoon': 'Good afternoon! What would you like to know about Devangi?',
+    'good evening': 'Good evening! How can I assist you with information about Devangi?',
+    
+    // Skills & Technologies
+    'skills': 'Devangi is proficient in:\n\n💻 Programming Languages:\n   • HTML, CSS\n   • Java, JavaScript\n   • React.js, Node.js, Next.js\n   • Tailwind CSS\n\n🔧 Frameworks:\n   • Hibernate\n   • Spring Framework\n\n🗄️ Databases:\n   • MySQL, Supabase\n   • SQLite, PHP\n\n🛠️ Tools:\n   • Git, VS Code\n   • Postman, NetBeans\n   • Figma',
+    'skill': 'Devangi is proficient in:\n\n💻 Programming Languages:\n   • HTML, CSS\n   • Java, JavaScript\n   • React.js, Node.js, Next.js\n   • Tailwind CSS\n\n🔧 Frameworks:\n   • Hibernate\n   • Spring Framework\n\n🗄️ Databases:\n   • MySQL, Supabase\n   • SQLite, PHP\n\n🛠️ Tools:\n   • Git, VS Code\n   • Postman, NetBeans\n   • Figma',
+    'technology': 'Devangi works with modern technologies including React.js, Node.js, Next.js, Java, Spring Framework, Hibernate, MySQL, and more. She\'s skilled in both frontend and backend development!',
+    'technologies': 'Devangi works with modern technologies including React.js, Node.js, Next.js, Java, Spring Framework, Hibernate, MySQL, and more. She\'s skilled in both frontend and backend development!',
+    'tech': 'Devangi works with modern technologies including React.js, Node.js, Next.js, Java, Spring Framework, Hibernate, MySQL, and more. She\'s skilled in both frontend and backend development!',
+    'programming': 'Devangi knows HTML, CSS, Java, JavaScript, React.js, Node.js, Next.js, and Tailwind CSS. She\'s proficient in both frontend and backend programming!',
+    'languages': 'Devangi knows HTML, CSS, Java, JavaScript, React.js, Node.js, Next.js, and Tailwind CSS!',
+    'framework': 'Devangi works with Hibernate and Spring Framework for backend development.',
+    'frameworks': 'Devangi works with Hibernate and Spring Framework for backend development.',
+    'database': 'Devangi has experience with MySQL, Supabase, SQLite, and PHP databases.',
+    'databases': 'Devangi has experience with MySQL, Supabase, SQLite, and PHP databases.',
+    'tools': 'Devangi uses Git, VS Code, Postman, NetBeans, and Figma for development.',
+    'react': 'Yes! Devangi is proficient in React.js and has used it in multiple projects including TalentExcel and MSA Smart Attendance.',
+    'java': 'Yes! Devangi knows Java and works with Java frameworks like Hibernate and Spring Framework.',
+    'javascript': 'Yes! Devangi is proficient in JavaScript and uses it extensively in her full-stack projects.',
+    'node': 'Yes! Devangi has experience with Node.js for backend development in projects like TalentExcel and MSA Smart Attendance.',
+    
+    // Experience & Work
+    'experience': 'Devangi has worked as:\n\n🏢 Full Stack Developer Intern at 10xGrowth (2 months)\n   • Worked on TalentExcel project\n   • Developed frontend UI components\n   • Implemented backend authentication\n\n🏢 Full Stack Developer Intern at Prodigy (1 month)\n   • Built responsive UIs\n   • Implemented authentication systems\n   • Collaborated on full-stack tasks',
+    'work': 'Devangi has completed internships at 10xGrowth (2 months) and Prodigy (1 month), working on full-stack development projects including TalentExcel and various web applications.',
+    'job': 'Devangi has completed internships at 10xGrowth (2 months) and Prodigy (1 month), working on full-stack development projects.',
+    'internship': 'Devangi has completed two internships:\n\n1. 10xGrowth - Full Stack Developer Intern (2 months)\n2. Prodigy - Full Stack Developer Intern (1 month)\n\nBoth focused on full-stack development with React.js and Node.js.',
+    'internships': 'Devangi has completed two internships:\n\n1. 10xGrowth - Full Stack Developer Intern (2 months)\n2. Prodigy - Full Stack Developer Intern (1 month)\n\nBoth focused on full-stack development with React.js and Node.js.',
+    'intern': 'Devangi has completed internships at 10xGrowth and Prodigy as a Full Stack Developer Intern.',
+    '10xgrowth': 'Devangi worked as a Full Stack Developer Intern at 10xGrowth for 2 months, where she worked on the TalentExcel project, developed frontend UI components, and implemented backend authentication.',
+    'prodigy': 'Devangi worked as a Full Stack Developer Intern at Prodigy for 1 month, where she built responsive UIs, implemented authentication systems, and collaborated on full-stack development tasks.',
+    'talentexcel': 'TalentExcel is a professional skill management platform that Devangi worked on during her internship at 10xGrowth. Built with React.js, Express.js, and Supabase. Visit: talentexcel.com',
+    
+    // Education
+    'education': 'Devangi\'s complete educational background:\n\n🎓 Bachelor of Science (BSc) Computer Science\n   📍 Pillai College of Arts, Commerce and Science (PCACS)\n   📅 Currently in Third Year (TY BSc)\n   🎯 Expected Graduation: 2026\n\n🎓 12th Higher Secondary Certificate (HSC)\n   📍 DSP Jr. College\n   📚 Stream: PCMB + IT (Physics, Chemistry, Mathematics, Biology + Information Technology)\n   📅 Completed: 2023\n\n🎓 10th Secondary School Certificate (SSC)\n   📍 DSP Public School\n   📅 Completed: 2021',
+    'college': 'Devangi is currently pursuing TY BSc Computer Science at Pillai College of Arts, Commerce and Science (PCACS), expected to graduate in 2026.',
+    'university': 'Devangi is currently pursuing TY BSc Computer Science at Pillai College of Arts, Commerce and Science (PCACS), expected to graduate in 2026.',
+    'school': 'Devangi completed her 12th HSC (PCMB + IT) from DSP Jr. College in 2023 and 10th SSC from DSP Public School in 2021.',
+    'degree': 'Devangi is pursuing a Bachelor of Science (BSc) in Computer Science from Pillai College (PCACS), currently in her third year with expected graduation in 2026.',
+    'qualification': 'Devangi\'s qualifications:\n• TY BSc Computer Science (Ongoing - 2026)\n• 12th HSC PCMB + IT (2023)\n• 10th SSC (2021)',
+    'qualifications': 'Devangi\'s qualifications:\n• TY BSc Computer Science (Ongoing - 2026)\n• 12th HSC PCMB + IT (2023)\n• 10th SSC (2021)',
+    'study': 'Devangi is currently studying Computer Science (TY BSc) at Pillai College (PCACS), expected to graduate in 2026.',
+    'studying': 'Devangi is currently studying Computer Science (TY BSc) at Pillai College (PCACS), expected to graduate in 2026.',
+    'student': 'Yes! Devangi is a TY BSc Computer Science student at Pillai College (PCACS), expected to graduate in 2026.',
+    'graduate': 'Devangi is expected to graduate in 2026 with a BSc in Computer Science from Pillai College (PCACS).',
+    'graduation': 'Devangi\'s expected graduation is in 2026 with a BSc in Computer Science from Pillai College (PCACS).',
+    
+    // Projects
+    'projects': 'Notable projects by Devangi:\n\n📱 MSA Smart Attendance WebApp\n   • Digital attendance system with QR & GPS\n   • Tech: Node.js, Express.js, Prisma ORM, SQLite/PostgreSQL\n   • Features: JWT Auth, QR Scanning, GPS Tracking, Excel Export\n   • Live: msa-smart-attendance.vercel.app\n\n💬 Chatting App (Simple)\n   • Real-time chat with WebSocket\n   • Tech: JavaScript, WebSocket, Node.js\n   • GitHub: PRODIGY_FS_4\n\n🎯 TalentExcel (10xGrowth Project)\n   • Professional skill management platform\n   • Tech: React.js, Express.js, Supabase\n   • Live: talentexcel.com',
+    'project': 'Devangi has built several projects including MSA Smart Attendance WebApp, a Chatting App, and TalentExcel platform. Would you like details about any specific project?',
+    'portfolio': 'Devangi has built several impressive projects including MSA Smart Attendance WebApp, a real-time Chatting App, and TalentExcel platform. Check out her GitHub: Devangi-04',
+    'msa': 'MSA Smart Attendance WebApp is a comprehensive digital attendance system for Mathematics and Statistics Association.\n\n🛠️ Technologies:\n   • Node.js + Express.js\n   • Prisma ORM + SQLite/PostgreSQL\n   • JWT Authentication + bcrypt\n   • QR Code Generation & Scanning\n   • GPS Location Tracking\n   • ExcelJS for Reports\n   • Bootstrap 5 + Font Awesome\n\n✨ Features: QR code scanning, GPS verification, attendance tracking, Excel export\n\n🌐 Live at: msa-smart-attendance.vercel.app',
+    'attendance': 'MSA Smart Attendance WebApp is a comprehensive digital attendance system for Mathematics and Statistics Association.\n\n🛠️ Technologies:\n   • Node.js + Express.js\n   • Prisma ORM + SQLite/PostgreSQL\n   • JWT Authentication + bcrypt\n   • QR Code Generation & Scanning\n   • GPS Location Tracking\n   • ExcelJS for Reports\n   • Bootstrap 5 + Font Awesome\n\n✨ Features: QR code scanning, GPS verification, attendance tracking, Excel export\n\n🌐 Live at: msa-smart-attendance.vercel.app',
+    'chat': 'Devangi built a real-time Chatting App using JavaScript, WebSocket, and Node.js. Check it out on GitHub: PRODIGY_FS_4',
+    'chatting': 'Devangi built a real-time Chatting App using JavaScript, WebSocket, and Node.js. Check it out on GitHub: PRODIGY_FS_4',
+    
+    // Interests & Strengths
+    'interests': 'Devangi is passionate about:\n\n❤️ Web Development\n   Building modern, responsive websites\n\n❤️ Full-Stack Development\n   Creating end-to-end solutions\n\n❤️ AI Integration\n   Exploring AI in web applications\n\nShe loves building innovative solutions and staying updated with the latest technologies!',
+    'interest': 'Devangi is passionate about:\n\n❤️ Web Development\n   Building modern, responsive websites\n\n❤️ Full-Stack Development\n   Creating end-to-end solutions\n\n❤️ AI Integration\n   Exploring AI in web applications\n\nShe loves building innovative solutions and staying updated with the latest technologies!',
+    'passion': 'Devangi is passionate about Web Development, Full-Stack Development, and AI Integration. She loves creating innovative solutions!',
+    'passions': 'Devangi is passionate about Web Development, Full-Stack Development, and AI Integration. She loves creating innovative solutions!',
+    'hobby': 'Devangi loves Web Development, Full-Stack Development, and exploring AI Integration in web applications!',
+    'hobbies': 'Devangi loves Web Development, Full-Stack Development, and exploring AI Integration in web applications!',
+    'strengths': 'Devangi\'s key strengths:\n\n⚡ Leadership\n   Guides teams effectively and takes initiative\n\n⚡ Time Management\n   Delivers projects on schedule\n\n⚡ Creativity\n   Innovative problem-solving approach\n\n⚡ Sincerity\n   Dedicated and committed to excellence\n\nThese qualities make her an excellent team player and developer!',
+    'strength': 'Devangi\'s key strengths:\n\n⚡ Leadership\n   Guides teams effectively and takes initiative\n\n⚡ Time Management\n   Delivers projects on schedule\n\n⚡ Creativity\n   Innovative problem-solving approach\n\n⚡ Sincerity\n   Dedicated and committed to excellence\n\nThese qualities make her an excellent team player and developer!',
+    'quality': 'Devangi\'s key qualities include Leadership, Time Management, Creativity, and Sincerity. She\'s a dedicated and reliable team player!',
+    'qualities': 'Devangi\'s key qualities include Leadership, Time Management, Creativity, and Sincerity. She\'s a dedicated and reliable team player!',
+    
+    // Contact Information
+    'contact': 'You can reach Devangi at:\n\n📧 Email: devangibarai0403@gmail.com\n📱 Phone: 9967313355\n💼 LinkedIn: linkedin.com/in/devangi-barai-295692295\n🐙 GitHub: Devangi-04',
+    'reach': 'You can reach Devangi at:\n\n📧 Email: devangibarai0403@gmail.com\n📱 Phone: 9967313355\n💼 LinkedIn: linkedin.com/in/devangi-barai-295692295\n🐙 GitHub: Devangi-04',
+    'email': '📧 Devangi\'s email: devangibarai0403@gmail.com\n\nFeel free to reach out for any queries!',
+    'mail': '📧 Devangi\'s email: devangibarai0403@gmail.com\n\nFeel free to reach out for any queries!',
+    'phone': '📱 You can call Devangi at: 9967313355',
+    'call': '📱 You can call Devangi at: 9967313355',
+    'number': '📱 You can call Devangi at: 9967313355',
+    'github': '🐙 Check out Devangi\'s GitHub: github.com/Devangi-04\n\nExplore her open-source projects and contributions!',
+    'git': '🐙 Check out Devangi\'s GitHub: github.com/Devangi-04\n\nExplore her open-source projects and contributions!',
+    'linkedin': '💼 Connect on LinkedIn: linkedin.com/in/devangi-barai-295692295\n\nLet\'s connect professionally!',
+    'social': 'Connect with Devangi:\n\n💼 LinkedIn: linkedin.com/in/devangi-barai-295692295\n🐙 GitHub: Devangi-04',
+    
+    // About & Personal
+    'who': 'Devangi Banshilal Barai is a passionate Full-Stack Developer and Computer Science student at PCACS. She specializes in web development with expertise in React.js, Node.js, Java, and modern web technologies. She has completed internships at 10xGrowth and Prodigy.',
+    'about': 'Devangi is a TY BSc Computer Science student at PCACS with a passion for full-stack development. She has completed internships at 10xGrowth and Prodigy, working on projects like TalentExcel and MSA Smart Attendance. Her interests include Web Development, Full-Stack Development, and AI Integration.',
+    'name': 'Her full name is Devangi Banshilal Barai. She\'s a passionate Full-Stack Developer and Computer Science student.',
+    'developer': 'Yes! Devangi is a Full-Stack Developer with experience in React.js, Node.js, Java, and modern web technologies. She has completed internships at 10xGrowth and Prodigy.',
+    'fullstack': 'Yes! Devangi is a Full-Stack Developer proficient in both frontend (React.js, HTML, CSS) and backend (Node.js, Java, Spring Framework) technologies.',
+    'full-stack': 'Yes! Devangi is a Full-Stack Developer proficient in both frontend (React.js, HTML, CSS) and backend (Node.js, Java, Spring Framework) technologies.',
+    'frontend': 'Devangi is skilled in frontend development with HTML, CSS, JavaScript, React.js, Next.js, and Tailwind CSS.',
+    'backend': 'Devangi is skilled in backend development with Node.js, Java, Spring Framework, Hibernate, and databases like MySQL and Supabase.',
+    
+    // Help & Misc
+    'help': 'I can help you with:\n\n• Skills & Technologies\n• Work Experience & Internships\n• Complete Education Background\n• Projects Portfolio\n• Interests & Passions\n• Strengths & Qualities\n• Contact Information\n\nJust ask me anything!',
+    'what': 'I can help you with information about Devangi\'s skills, experience, education, projects, interests, strengths, or contact details. What specifically would you like to know?',
+    'tell': 'I can tell you about Devangi\'s skills, experience, education, projects, interests, strengths, or contact information. What would you like to know?',
+    'know': 'I can share information about Devangi\'s skills, experience, education, projects, interests, strengths, or how to contact her. What interests you?',
+    'thanks': 'You\'re welcome! Feel free to ask if you need any more information about Devangi. 😊',
+    'thank': 'You\'re welcome! Feel free to ask if you need any more information about Devangi. 😊',
+    'thankyou': 'You\'re welcome! Feel free to ask if you need any more information about Devangi. 😊',
+    'ty': 'You\'re welcome! 😊',
+    'bye': 'Goodbye! Feel free to come back if you have more questions about Devangi. Have a great day! 👋',
+    'goodbye': 'Goodbye! Feel free to come back if you have more questions about Devangi. Have a great day! 👋',
+    'see you': 'See you later! Feel free to return anytime. 👋',
+    'ok': 'Great! Let me know if you need anything else about Devangi. 😊',
+    'okay': 'Great! Let me know if you need anything else about Devangi. 😊',
+    'default': 'I can help you with information about Devangi\'s skills, experience, education, projects, interests, strengths, or contact details. What would you like to know?'
 };
 
 function addMessage(text, isBot = true) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${isBot ? 'bot' : 'user'}`;
-    messageDiv.textContent = text;
+    // Replace \n with <br> for proper line breaks
+    messageDiv.innerHTML = text.replace(/\n/g, '<br>');
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 function getBotResponse(userMessage) {
-    const message = userMessage.toLowerCase();
+    const message = userMessage.toLowerCase().trim();
     
+    // Check for exact match first
+    if (botResponses[message]) {
+        return botResponses[message];
+    }
+    
+    // Check for word boundaries (whole word match)
+    for (const [key, response] of Object.entries(botResponses)) {
+        const regex = new RegExp('\\b' + key + '\\b', 'i');
+        if (regex.test(message)) {
+            return response;
+        }
+    }
+    
+    // Check for partial match as fallback
     for (const [key, response] of Object.entries(botResponses)) {
         if (message.includes(key)) {
             return response;
@@ -120,7 +234,7 @@ function getBotResponse(userMessage) {
 chatbotButton.addEventListener('click', () => {
     chatbotWindow.classList.add('active');
     if (chatMessages.children.length === 0) {
-        addMessage('Hello! I\'m here to help you learn more about Devangi. Ask me anything!');
+        addMessage('Hello! 👋 I\'m Devangi\'s virtual assistant.\n\nI can help you with:\n• Skills & Technologies\n• Work Experience\n• Education\n• Projects\n• Interests & Strengths\n• Contact Information\n\nWhat would you like to know?');
     }
 });
 
